@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}OsteoAI - Splash{% endblock %}
+
+{% block extra_css %}
+<style>
+  .bg-cinematic-gradient {
+    background: radial-gradient(circle at center, #2e1a4a 0%, #0a192f 100%);
+    height: 100vh;
+  }
+
+  .tech-grid {
+    background-image: linear-gradient(rgba(0, 212, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 212, 255, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .scanner-line {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.5), transparent);
+    animation: scan 4s linear infinite;
+  }
+
+  @keyframes scan {
+    0% {
+      top: -10%
+    }
+
+    100% {
+      top: 110%
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<main class="relative w-full h-screen overflow-hidden flex flex-col items-center justify-center bg-cinematic-gradient">
+  <!-- Full-screen Background Video -->
+  <video autoplay loop playsinline class="absolute inset-0 w-full h-full object-cover z-0">
+    <source src="{{ url_for('static', filename='videos/bg.mp4') }}" type="video/mp4">
+  </video>
+
+  <!-- Dark Overlay for Text Visibility -->
+  <div class="absolute inset-0 z-0" style="background-color: rgba(0,0,0,0.6);"></div>
+
+  <div class="tech-grid"></div>
+  <div class="scanner-line"></div>
+  <section class="relative z-10 flex flex-col items-center text-center px-6">
+    <div class="mb-8 relative">
+      <div class="absolute inset-0 bg-[#00d4ff]/20 blur-3xl rounded-full animate-pulse"
+        style="width:160px;height:160px;"></div>
+      <svg class="w-24 h-24 text-[#00d4ff]" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+        <path
+          d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
+          stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+      </svg>
+    </div>
+    <h1 class="text-5xl md:text-6xl font-extrabold mb-4">Osteo<span class="text-[#00d4ff]">AI</span></h1>
+    <div class="w-24 h-1 bg-[#00d4ff] rounded-full mb-6 opacity-70"></div>
+    <p class="text-lg md:text-2xl text-blue-200/80 max-w-lg">Precision Bone Health Analysis</p>
+  </section>
+
+  <footer class="absolute bottom-12 w-full flex flex-col items-center z-10">
+    <div class="flex space-x-2 mb-4">
+      <div class="w-2 h-2 bg-[#00d4ff] rounded-full animate-bounce" style="animation-delay:-0.3s"></div>
+      <div class="w-2 h-2 bg-[#00d4ff] rounded-full animate-bounce" style="animation-delay:-0.15s"></div>
+      <div class="w-2 h-2 bg-[#00d4ff] rounded-full animate-bounce"></div>
+    </div>
+    <p class="text-xs text-blue-300/40 uppercase tracking-[0.2em] font-medium">Initializing Clinical Neural Networks
+      v4.0.2</p>
+    <div class="mt-4">
+      <a href="/intro" class="bg-white text-[#0a192f] px-6 py-2 rounded-full font-semibold shadow-md">Enter Portal</a>
+    </div>
+  </footer>
+</main>
+{% endblock %}

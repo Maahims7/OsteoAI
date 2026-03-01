@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}OsteoAI - Bone Density Graph{% endblock %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto px-4 py-12">
+  <h2 class="text-3xl font-bold mb-4 text-gray-900">📈 Bone Mineral Density Analysis</h2>
+  <p class="text-gray-600 mb-8">This chart displays your current bone density compared to standard clinical references for healthy ranges.</p>
+
+  {% if error %}
+    <div class="bg-red-100 border border-red-400 text-red-700 px-6 py-4 rounded-lg mb-6">
+      {{ error }}
+    </div>
+  {% endif %}
+
+  {% if actual_density %}
+  <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+    <div class="chart-container relative" style="height:420px">
+      <canvas id="bmdChart"></canvas>
+    </div>
+  </div>
+
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
+    <h3 class="font-bold text-lg text-blue-900 mb-3">📊 Your Results</h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="bg-white p-4 rounded">
+        <p class="text-xs text-gray-500 uppercase font-bold mb-1">Patient Density</p>
+        <p class="text-2xl font-bold text-blue-600">{{ actual_density|round(1) }}%</p>
+      </div>
+      <div class="bg-white p-4 rounded">
+        <p class="text-xs text-gray-500 uppercase font-bold mb-1">Expected Density</p>
+        <p class="text-2xl font-bold text-green-600">{{ expected_density|round(1) }}%</p>
+      </div>
+      <div class="bg-white p-4 rounded">
+        <p class="text-xs text-gray-500 uppercase font-bold mb-1">Risk Category</p>
+        <p class="text-2xl font-bold text-orange-600">{{ risk_category }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex gap-4 justify-center flex-wrap">
+    <a href="/report" class="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-bold shadow-md">
+      📋 View Full Report
+    </a>
+    <a href="/" class="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-bold shadow-md">
+      🏠 Analyze Another
+    </a>
+  </div>
+  {% else %}
+  <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-6 py-4 rounded-lg">
+    ℹ️ No prediction data available. Please complete a patient analysis first.
+    <a href="/patient" class="underline font-bold ml-2">Start Analysis</a>
+  </div>
+  {% endif %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+<script>
+  {% if actual_density %}
+  const ctx = document.getElementById('bmdChart');
+  if (ctx) {
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Reference\nRange', 'Your\nDensity', 'Osteopenia\nThreshold', 'Osteoporosis\nThreshold'],
+        datasets: [{ 
+          label: 'Bone Density (%)', 
+          data: [85, {{ actual_density }}, 60, 42], 
+          backgroundColor: ['#c7d2fe', '#3b82f6', '#fbbf24', '#fb7185']
+        }]
+      },
+      options: { 
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: true, position: 'top' } },
+        scales: { 
+          y: { beginAtZero: true, max: 100, ticks: { callback: function(value) { return value + '%'; } } } 
+        } 
+      }
+    });
+  }
+  {% endif %}
+</script>
+
+{% endblock %}

@@ -1,0 +1,223 @@
+{% extends "base.html" %}
+
+{% block title %}OsteoAI - Understanding Osteoporosis{% endblock %}
+
+{% block extra_css %}
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap');
+
+  body {
+    font-family: 'Inter', sans-serif !important;
+    background: linear-gradient(135deg, #0B1120, #0F172A) !important;
+    color: #CBD5E1 !important;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: -10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80vw;
+    height: 50vh;
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.05) 0%, transparent 70%);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  nav {
+    background: rgba(15, 23, 42, 0.8) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  nav a.text-purple-600 {
+    color: #fff !important;
+  }
+
+  nav a.text-gray-700 {
+    color: #CBD5E1 !important;
+    position: relative;
+  }
+
+  nav a.text-gray-700:hover {
+    color: #22D3EE !important;
+  }
+
+  nav a.text-gray-700::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background: #22D3EE;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 8px #22D3EE;
+  }
+
+  nav a.text-gray-700:hover::after {
+    width: 100%;
+  }
+
+  nav span.text-gray-500 {
+    color: #3B82F6 !important;
+  }
+
+  footer {
+    background: rgba(11, 17, 32, 0.9) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    color: #64748B !important;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: 'Poppins', sans-serif !important;
+    color: #fff !important;
+  }
+
+  .title-gradient {
+    background: linear-gradient(to right, #3B82F6, #8B5CF6) !important;
+    background-clip: text !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    letter-spacing: 0.05em;
+  }
+
+  .glass-card {
+    background: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .glass-card:hover {
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(34, 211, 238, 0.1) !important;
+  }
+
+  .section-title {
+    position: relative;
+    padding-left: 1rem;
+  }
+
+  .section-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10%;
+    height: 80%;
+    width: 4px;
+    background: #8B5CF6;
+    border-radius: 4px;
+    box-shadow: 0 0 8px #8B5CF6;
+  }
+
+  .btn-primary {
+    background: linear-gradient(90deg, #3B82F6, #8B5CF6) !important;
+    border: none !important;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.4) !important;
+    color: white !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .btn-primary:hover {
+    transform: scale(1.02) !important;
+    box-shadow: 0 0 25px rgba(139, 92, 246, 0.6) !important;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animation-delay-100 {
+    animation-delay: 0.1s;
+  }
+
+  .animation-delay-200 {
+    animation-delay: 0.2s;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 py-12 animate-fade-in">
+  <section class="mb-16 text-center">
+    <h1 class="text-4xl md:text-5xl font-extrabold mb-6 title-gradient">Understanding Osteoporosis</h1>
+    <p class="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">Empowering patients and clinicians with advanced
+      AI-driven bone density analysis and comprehensive educational resources.</p>
+  </section>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+    <section class="space-y-8 animate-fade-in animation-delay-100">
+      <article class="glass-card p-8">
+        <div class="flex items-center gap-4 mb-4">
+          <div class="p-3 bg-blue-900/40 border border-blue-500/20 rounded-lg text-cyan-400">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+              <path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round"
+                stroke-linejoin="round" stroke-width="2"></path>
+            </svg>
+          </div>
+          <h2 class="text-2xl font-bold section-title ml-2 pl-0">What is Osteoporosis?</h2>
+        </div>
+        <div class="prose prose-slate max-w-none text-slate-300">
+          <p>Osteoporosis is a systemic skeletal disorder characterized by low bone mass and micro-architectural
+            deterioration of bone tissue. This leads to increased bone fragility and a consequent increase in fracture
+            risk.</p>
+          <p class="font-semibold mt-4 mb-2 text-cyan-400 italic">Key Facts:</p>
+          <ul class="list-disc pl-5 space-y-2">
+            <li>Often called a "silent disease" because bone loss occurs without symptoms.</li>
+            <li>Affects millions of adults, predominantly post-menopausal women.</li>
+            <li>Can be managed and treated through early detection and lifestyle intervention.</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <section class="flex flex-col gap-6 animate-fade-in animation-delay-200">
+      <div class="glass-card p-8 flex-grow">
+        <h3 class="text-xl font-bold mb-4 section-title">Bone Health Awareness</h3>
+        <p class="text-sm text-slate-400 mb-6">Learn more about the importance of bone health and early detection
+          through this community awareness video.</p>
+
+        <div
+          class="rounded-xl overflow-hidden aspect-video bg-slate-900/50 border border-slate-700/50 shadow-inner relative">
+          <iframe class="absolute top-0 left-0 w-full h-full"
+            src="https://www.youtube.com/embed/ijAelP_v744?autoplay=1&mute=1&loop=1&playlist=ijAelP_v744"
+            title="Osteoporosis Awareness Video" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+
+      <div class="glass-card p-8 text-center"
+        style="border-color: rgba(139, 92, 246, 0.3) !important; background: rgba(139, 92, 246, 0.05) !important;">
+        <h4 class="text-xl font-bold text-white mb-2">Ready for Assessment?</h4>
+        <p class="text-sm text-purple-300 mb-6 italic">Secure, HIPAA-compliant diagnostic screening</p>
+        <a href="/patient" class="w-full inline-block btn-primary font-bold py-4 px-8 rounded-xl text-lg block">Start
+          AI Analysis</a>
+      </div>
+    </section>
+  </div>
+</div>
+{% endblock %}

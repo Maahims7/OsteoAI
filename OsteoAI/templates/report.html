@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+
+{% block title %}OsteoAI - Final Medical Report{% endblock %}
+
+{% block extra_css %}
+<style>
+  .report-container { max-width: 900px; margin: 2rem auto; background: white; padding: 2.5rem; box-shadow: 0 10px 25px rgba(0,0,0,0.08); border-radius: 8px; }
+  .watermark { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) rotate(-45deg); opacity:0.03; font-size:4rem; font-weight:900; pointer-events:none; z-index:-1; }
+</style>
+{% endblock %}
+
+{% block content %}
+{% if error %}
+  <div class="bg-red-100 border border-red-400 text-red-700 px-6 py-4 rounded-lg mb-6 max-w-2xl mx-auto">
+    {{ error }}
+  </div>
+{% endif %}
+
+{% if name %}
+<div class="report-container relative">
+  <div class="watermark">REPORT</div>
+  
+  <header class="border-b-2 pb-6 mb-8">
+    <div class="flex justify-between items-start mb-4">
+      <div>
+        <h1 class="text-3xl font-black text-gray-900">Medical Analysis Report</h1>
+        <p class="text-sm text-gray-500 mt-1">OsteoAI Diagnostic v4.0.2</p>
+      </div>
+      <div class="text-right">
+        <p class="text-sm font-bold text-gray-700">Date: {{ now.strftime('%Y-%m-%d') if now else 'N/A' }}</p>
+      </div>
+    </div>
+  </header>
+
+  <section class="mb-8">
+    <h2 class="text-xl font-bold text-gray-800 mb-4 border-b pb-2">👤 Patient Information</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <p class="text-sm text-gray-500 uppercase font-bold mb-1">Full Name</p>
+        <p class="text-lg font-semibold text-gray-900">{{ name }}</p>
+      </div>
+      <div>
+        <p class="text-sm text-gray-500 uppercase font-bold mb-1">Age / Sex</p>
+        <p class="text-lg font-semibold text-gray-900">{{ age }} years / {{ sex }}</p>
+      </div>
+      <div>
+        <p class="text-sm text-gray-500 uppercase font-bold mb-1">Height / Weight</p>
+        <p class="text-lg font-semibold text-gray-900">{{ height }} cm / {{ weight }} kg</p>
+      </div>
+      {% if phone or email %}
+      <div>
+        <p class="text-sm text-gray-500 uppercase font-bold mb-1">Contact</p>
+        <p class="text-sm text-gray-700">{{ phone if phone else 'N/A' }}<br/>{{ email if email else 'N/A' }}</p>
+      </div>
+      {% endif %}
+    </div>
+  </section>
+
+  <section class="mb-8">
+    <h2 class="text-xl font-bold text-gray-800 mb-4 border-b pb-2">🔬 Diagnostic Findings</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="p-4 bg-blue-50 rounded-lg border border-blue-200">
+        <p class="text-xs text-blue-600 uppercase font-bold mb-1">Prediction</p>
+        <p class="text-2xl font-bold text-blue-900">{{ prediction }}</p>
+      </div>
+      <div class="p-4 bg-green-50 rounded-lg border border-green-200">
+        <p class="text-xs text-green-600 uppercase font-bold mb-1">Confidence</p>
+        <p class="text-2xl font-bold text-green-900">{{ (confidence * 100)|round(1) }}%</p>
+      </div>
+      <div class="p-4 bg-orange-50 rounded-lg border border-orange-200">
+        <p class="text-xs text-orange-600 uppercase font-bold mb-1">Risk Level</p>
+        <p class="text-2xl font-bold text-orange-900">{{ risk_category }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mb-8">
+    <h2 class="text-xl font-bold text-gray-800 mb-4 border-b pb-2">📊 Clinical Metrics</h2>
+    <div class="space-y-3">
+      <div class="flex justify-between items-center p-3 bg-gray-50 rounded">
+        <span class="font-semibold text-gray-700">Bone Density (Actual)</span>
+        <span class="text-lg font-bold text-gray-900">{{ actual_density|round(1) }}%</span>
+      </div>
+      <div class="flex justify-between items-center p-3 bg-gray-50 rounded">
+        <span class="font-semibold text-gray-700">Expected Density</span>
+        <span class="text-lg font-bold text-gray-900">{{ expected_density|round(1) }}%</span>
+      </div>
+      <div class="flex justify-between items-center p-3 bg-gray-50 rounded">
+        <span class="font-semibold text-gray-700">Deficiency</span>
+        <span class="text-lg font-bold text-red-600">{{ deficiency|round(1) }}%</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="mb-8">
+    <h2 class="text-xl font-bold text-gray-800 mb-4 border-b pb-2">💊 Recommendations</h2>
+    {% if prescription %}
+    <ul class="space-y-2">
+      {% for item in prescription %}
+      <li class="flex items-start">
+        <span class="text-green-600 font-bold mr-3">✓</span>
+        <span class="text-gray-700">{{ item }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p class="text-gray-600">No recommendations available.</p>
+    {% endif %}
+  </section>
+
+  {% if disclaimer %}
+  <section class="mb-8 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+    <p class="text-sm text-yellow-800"><strong>⚠️ Medical Disclaimer:</strong> {{ disclaimer }}</p>
+  </section>
+  {% endif %}
+
+  <footer class="flex justify-between items-center pt-6 border-t">
+    <button onclick="window.print()" class="bg-gray-900 text-white px-6 py-2 rounded-lg font-semibold hover:bg-black transition">
+      🖨️ Print Report
+    </button>
+    <div class="text-xs text-gray-500">
+      Generated by OsteoAI v4.0.2 | Not for clinical diagnosis
+    </div>
+  </footer>
+</div>
+
+<div class="max-w-2xl mx-auto mt-8 flex gap-4 justify-center flex-wrap">
+  <a href="/" class="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-bold">
+    🏠 Analyze Another
+  </a>
+  <a href="/dashboard" class="bg-gray-600 hover:bg-gray-700 text-white px-8 py-3 rounded-lg font-bold">
+    📊 View Dashboard
+  </a>
+</div>
+
+{% else %}
+<div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-6 py-4 rounded-lg max-w-2xl mx-auto">
+  ℹ️ No patient report available. Please complete a patient analysis first.
+  <a href="/patient" class="underline font-bold ml-2">Start Analysis</a>
+</div>
+{% endif %}
+
+{% endblock %}

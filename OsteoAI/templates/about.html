@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block title %}About OsteoAI - Medical AI Platform{% endblock %}
+
+{% block content %}
+
+<div class="max-w-4xl mx-auto">
+    <!-- Hero Section -->
+    <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-gray-900 mb-4">About OsteoAI</h2>
+        <p class="text-xl text-gray-600">Revolutionary AI-Powered Bone Density Analysis Platform</p>
+    </div>
+
+    <!-- Overview Section -->
+    <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">🎯 Mission</h3>
+        <p class="text-gray-700 leading-relaxed mb-4">
+            OsteoAI leverages deep learning and medical imaging to enable early detection of osteoporosis and related bone density disorders. 
+            Our mission is to democratize bone health screening through accessible, accurate AI-assisted analysis.
+        </p>
+    </div>
+
+    <!-- Technology Stack -->
+    <div class="bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg shadow-lg p-8 mb-8">
+        <h3 class="text-2xl font-bold text-gray-900 mb-6">🔬 Technology Stack</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white p-4 rounded-lg border-l-4 border-purple-600">
+                <h4 class="font-bold text-gray-900 mb-2">🧠 Deep Learning Model</h4>
+                <p class="text-gray-700 text-sm">
+                    <strong>MobileNetV2</strong><br/>
+                    Transfer learning architecture optimized for medical imaging classification
+                </p>
+            </div>
+            <div class="bg-white p-4 rounded-lg border-l-4 border-blue-600">
+                <h4 class="font-bold text-gray-900 mb-2">🔍 Explainability</h4>
+                <p class="text-gray-700 text-sm">
+                    <strong>Grad-CAM Visualization</strong><br/>
+                    Visual heatmaps showing which regions influenced AI predictions
+                </p>
+            </div>
+            <div class="bg-white p-4 rounded-lg border-l-4 border-green-600">
+                <h4 class="font-bold text-gray-900 mb-2">📊 Multi-Class Classification</h4>
+                <p class="text-gray-700 text-sm">
+                    <strong>3-Class Detection</strong><br/>
+                    Normal | Osteopenia | Osteoporosis
+                </p>
+            </div>
+            <div class="bg-white p-4 rounded-lg border-l-4 border-orange-600">
+                <h4 class="font-bold text-gray-900 mb-2">💊 Smart Recommendations</h4>
+                <p class="text-gray-700 text-sm">
+                    <strong>Personalized Prescriptions</strong><br/>
+                    Age/sex/weight-based vitamin & nutrition advice
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Key Features -->
+    <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+        <h3 class="text-2xl font-bold text-gray-900 mb-6">✨ Key Features</h3>
+        <ul class="space-y-3">
+            <li class="flex items-start">
+                <span class="text-purple-600 font-bold mr-4">✓</span>
+                <span class="text-gray-700"><strong>Real-time AI Analysis:</strong> Instant bone density classification from X-ray images</span>
+            </li>
+            <li class="flex items-start">
+                <span class="text-purple-600 font-bold mr-4">✓</span>
+                <span class="text-gray-700"><strong>Confidence Scoring:</strong> Transparent model confidence displayed for all predictions</span>
+            </li>
+            <li class="flex items-start">
+                <span class="text-purple-600 font-bold mr-4">✓</span>
+                <span class="text-gray-700"><strong>Grad-CAM Visualization:</strong> Understand which regions influenced the diagnosis</span>
+            </li>
+            <li class="flex items-start">
+                <span class="text-purple-600 font-bold mr-4">✓</span>
+                <span class="text-gray-700"><strong>Risk Assessment:</strong> Personalized deficiency calculations and risk categorization</span>
+            </li>
+            <li class="flex items-start">
+                <span class="text-purple-600 font-bold mr-4">✓</span>
+                <span class="text-gray-700"><strong>Medical Reports:</strong> Professional-grade reports with patient data and imaging</span>
+            </li>
+            <li class="flex items-start">
+                <span class="text-purple-600 font-bold mr-4">✓</span>
+                <span class="text-gray-700"><strong>Smart Prescriptions:</strong> AI-generated vitamin and food recommendations</span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Model Performance -->
+    <div class="bg-blue-50 rounded-lg shadow-lg p-8 mb-8 border-l-4 border-blue-600">
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">📈 Model Performance</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="bg-white p-4 rounded-lg text-center">
+                <p class="text-gray-500 text-sm mb-1">Validation Accuracy</p>
+                <p class="text-3xl font-bold text-purple-600">72.7%</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg text-center">
+                <p class="text-gray-500 text-sm mb-1">Test Accuracy</p>
+                <p class="text-3xl font-bold text-purple-600">70.0%</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg text-center">
+                <p class="text-gray-500 text-sm mb-1">Training Epochs</p>
+                <p class="text-3xl font-bold text-purple-600">11</p>
+            </div>
+        </div>
+        <p class="text-gray-600 text-sm mt-4">
+            ⚠️ Frontend displays actual model predictions with real confidence scores—never fake numbers. We maintain ethics and transparency.
+        </p>
+    </div>
+
+    <!-- Ethical AI Statement -->
+    <div class="bg-red-50 rounded-lg shadow-lg p-8 border-l-4 border-red-600">
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">⚖️ Ethical AI Commitment</h3>
+        <p class="text-gray-700 leading-relaxed">
+            OsteoAI is designed as an <strong>AI-assisted screening tool</strong>, not a replacement for medical professionals. 
+            We display actual model confidence scores (not inflated numbers) to ensure transparency and maintain user trust. 
+            All predictions must be validated by qualified healthcare professionals before any medical decisions are made.
+        </p>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="text-center mt-12 py-8">
+        <h3 class="text-2xl font-bold text-gray-900 mb-4">Ready to Analyze?</h3>
+        <a href="/" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-lg transition transform hover:scale-105">
+            🔍 Start Analysis
+        </a>
+    </div>
+</div>
+
+{% endblock %}

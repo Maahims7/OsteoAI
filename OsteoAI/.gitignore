@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*.h5
+*.npy
+
+# Flask
+instance/
+.env
+
+# static uploads and heatmaps
+static/uploads/
+static/heatmaps/
+
+# dataset
+dataset/
+
+# IDE files
+.vscode/

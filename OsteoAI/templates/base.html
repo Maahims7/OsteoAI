@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}OsteoAI - Medical AI Analysis{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .error-box { background-color: #fee2e2; border: 1px solid #fecaca; color: #991b1b; padding: 12px; border-radius: 4px; margin-bottom: 20px; }
+        .success-box { background-color: #dcfce7; border: 1px solid #bbf7d0; color: #166534; padding: 12px; border-radius: 4px; margin-bottom: 20px; }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+<body class="bg-gray-50">
+
+<!-- Navigation Bar -->
+<nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+            <a href="/" class="text-2xl font-bold text-purple-600">🦴 OsteoAI</a>
+            <span class="text-sm text-gray-500 ml-2">v1.0 Medical Edition</span>
+        </div>
+        <div class="flex space-x-8">
+            <a href="/" class="text-gray-700 hover:text-purple-600 font-medium transition">🏠 Home</a>
+            <a href="/about" class="text-gray-700 hover:text-purple-600 font-medium transition">📖 About</a>
+            <a href="/dashboard" class="text-gray-700 hover:text-purple-600 font-medium transition">📊 Dashboard</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<main class="max-w-7xl mx-auto px-4 py-8">
+    {% if error %}
+        <div class="error-box">❌ {{ error }}</div>
+    {% endif %}
+    {% if success %}
+        <div class="success-box">✅ {{ success }}</div>
+    {% endif %}
+    
+    {% block content %}{% endblock %}
+</main>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-gray-300 text-center py-6 mt-16">
+    <p class="mb-2">⚠️ <strong>Medical Disclaimer:</strong> OsteoAI is an AI-assisted screening tool and NOT a medical diagnosis.</p>
+    <p class="mb-2">Always consult with qualified healthcare professionals for definitive diagnosis and treatment.</p>
+    <p class="text-sm text-gray-500">© 2026 OsteoAI. Powered by MobileNetV2 Deep Learning | <a href="https://github.com" class="text-purple-400 hover:text-purple-300">GitHub</a></p>
+</footer>
+
+</body>
+</html>
